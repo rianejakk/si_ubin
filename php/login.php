@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['username'] = $user['username'];
 
         // Redirect to the dashboard
-        header("Location: ../login/dashboard.php?username=".urlencode($username));
+        header("Location: ../dashboard/dashboard.php?username=".urlencode($username));
         exit();
     } else {
         echo "Invalid username or password";
