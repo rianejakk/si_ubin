@@ -1,4 +1,7 @@
-<?php require ('../php/dashboard.php'); ?>
+<?php 
+    require ('../php/dashboard.php');
+    require ('../php/mitra_table.php');
+?>
 
 <!DOCTYPE html>
 <!-- saved from url=(0055)  -->
@@ -61,9 +64,27 @@
                     </button>
                 </div>
             </nav>
-                <div id="MitraTableContainer"></div>
+                
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Edit</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php
+                        $sql = "SELECT * FROM data_mitra";
+                        $result = $conn->query($sql);
+                        
+                        ?>
+                    </tbody>
+                </table>
+                <!-- <div id="MitraTableContainer"></div>
                 <div class="pagination" id="paginationContainer"></div>
-                <script src="./js/data_mitra.js"></script>
+                <script src="./js/mitra_table.js"></script> -->
             </div>
     </div>
 
