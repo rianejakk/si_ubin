@@ -1,6 +1,6 @@
 <?php 
     require ('../php/dashboard.php');
-    require ('../php/mitra_table.php');
+    // require ('../php/mitra_table.php');
 ?>
 
 <!DOCTYPE html>
@@ -65,10 +65,11 @@
                 </div>
             </nav>
                 
+                <!-- Tabel Data Mitra -->
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">No</th>
+                            <th scope="col">NIP</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Edit</th>
                         </tr>
@@ -79,6 +80,16 @@
                         $sql = "SELECT * FROM data_mitra";
                         $result = $conn->query($sql);
                         
+                        while($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row['id'] . "</td>";
+                            echo "<td>" . $row['Nama'] . "</td>";
+                            echo "<td><a href='edit_mitra.php?id=" . $row['id'] . "'>Edit</a>
+                                <a href='delete_mitra.php?id=" . $row['id'] . "'>Delete</a>
+                                </td>";
+                            echo "</tr>";
+                        }
+
                         ?>
                     </tbody>
                 </table>
