@@ -19,7 +19,6 @@
     <!-- Font Awesome JS -->
     <script defer="" src="./rsc/solid.js.download" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer="" src="./rsc/fontawesome.js.download" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
 
 </head>
 
@@ -33,10 +32,10 @@
             </div>
 
             <ul class="list-unstyled components">
-                <li class="active">
+                <li>
                     <a href="../dashboard/dashboard.php?username=<?php echo urlencode($username); ?>">Beranda</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">Data Mitra</a>
                 </li>
             </ul>
@@ -62,17 +61,9 @@
                     </button>
                 </div>
             </nav>
-
-            <div class="container">
-                <canvas id="theChart"></canvas>
-            </div>
-
-            <!-- <h2>Collapsible Sidebar Using Bootstrap 4</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-            <div class="line"></div> -->
-
+                <div id="MitraTableContainer"></div>
+                <div class="pagination" id="paginationContainer"></div>
+                <script src="./js/data_mitra.js"></script>
             </div>
     </div>
 
@@ -98,48 +89,6 @@
             });
         });
     </script>
-
-<script>
-    let ctx = document.getElementById("theChart").getContext("2d");
-    let myChart = new Chart(ctx, {
-        type: "line",
-        data: {
-            labels: [
-                "Januari",
-                "Februari",
-                "Maret",
-                "April",
-                "Mei",
-                "Juni",
-                "Juli",
-                "Agustus",
-                "September",
-                "Oktober",
-                "November",
-                "Desember",
-            ],
-            datasets: [
-                {
-                    label: "work load",
-                    data: [1.2, 1.7, 1.5, 2, 2.1, 2.3, 2.2, 2.8, 3.1, 3.2, 3, 3.2],
-                    backgroundColor: "rgba(153,205,1,0.6)",
-                },
-                {
-                    label: "free hours",
-                    data: [1.5, 1.3, 1.8, 2, 2.2, 2.4, 2.8, 3, 3.1, 3.4, 3.6, 3.5],
-                    backgroundColor: "rgba(155,153,10,0.6)",
-                },
-            ],
-        },
-        options: {
-            scales: {
-                y : {
-                    suggestedMin: 0,
-                },
-            },
-        },
-    });
-</script>
 
 
 </body></html>
