@@ -66,12 +66,13 @@
             </nav>
                 
                 <!-- Tabel Data Mitra -->
-                <table class="table">
-                    <thead>
+                <table class="table table-striped">
+                    <thead class="thead-light">
                         <tr>
-                            <th scope="col">NIP</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Edit</th>
+                            <th scope="col-2">NIP</th>
+                            <th scope="col-2">Nama</th>
+                            <th scope="col-2">Jabatan</th>
+                            <th scope="col-2">Edit</th>
                         </tr>
                     </thead>
 
@@ -84,6 +85,7 @@
                             echo "<tr>";
                             echo "<td>" . $row['id'] . "</td>";
                             echo "<td>" . $row['Nama'] . "</td>";
+                            echo "<td>" . $row['Jabatan'] . "</td>";
                             echo "<td><a href='edit_mitra.php?id=" . $row['id'] . "'>Edit</a>
                                 <a href='delete_mitra.php?id=" . $row['id'] . "'>Delete</a>
                                 </td>";
