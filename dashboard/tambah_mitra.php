@@ -1,5 +1,45 @@
-<?php require ('../php/dashboard.php'); 
+<?php 
+    require ('../php/dashboard.php'); 
     
+    // Inisiasi variabel
+    $nama = "";
+    $nip = "";
+    $jabatan = "";
+    $pesanError = "";
+    $pesanBerhasil = "";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $nama = $_POST["Nama"];
+        $nip = $_POST["NIP"];
+        $jabatan = $_POST["Jabatan"];
+
+        do {
+            // Isi semua kolom
+            if (empty($nama) || empty($nip) || empty($jabatan)) {
+                $pesanError = "Semua kolom harus diisi";
+                break;
+            }
+
+            // Masukkan ke dalam database
+            $sql = "INSERT INTO data_mitra (Nama, id, Jabatan) 
+                    VALUES ('$nama', '$nip', '$jabatan')";
+
+            $result = $conn->query($sql);
+            
+            if (!$result) {
+                $pesanError = "Data tidak valid";
+                break;
+            }
+
+            // Kosongkan kolom setelah berhasil
+            $nama = "";
+            $nip = "";
+            $jabatan = "";
+            
+            $pesanBerhasil = "Data berhasil ditambahkan";
+
+        } while (false);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -61,10 +101,60 @@
                     </button>
                 </div>
             </nav>
-
-            <div class="container">
-                <canvas id="theChart"></canvas>
-            </div>
+            <!-- Konten Disini -->
+                <div class="container my-5">
+                    <h4>Tambah Mitra</h4>
+                    <?php
+                    if (!empty($pesanError)) {
+                        echo "
+                        <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                            <p>$pesanError</p>
+                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                <span aria-hidden='true'>&times;</span>
+                            </button>
+                        </div>";
+                    }
+                    ?>
+                    <form method="post">
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Nama</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="Nama" value="<?php echo $nama; ?>">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">NIP</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="NIP" value="<?php echo $nip; ?>">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Jabatan</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" name="Jabatan" value="<?php echo $jabatan; ?>">
+                            </div>
+                        </div>
+                        <?php 
+                            if (!empty($pesanBerhasil)) {
+                                echo "
+                                <div class='alert alert-success alert-dismissable' role='alert'>
+                                    <strong>$pesanBerhasil</strong>
+                                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                            </button>
+                                </div>";
+                            }
+                        ?>
+                        <div class="row mb-3">
+                            <div class="offset-sm-3 col-sm-2 d-grid">
+                                <button type="submit" class="btn btn-primary" name="submit">Tambah</button>
+                            </div>
+                            <div class="col-sm-3 d-grid">
+                                <a class="btn btn-danger" href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">Batal</a>
+                        </div>
+                        </div>
+                    </form>
+                </div>
             </div>
     </div>
 
@@ -90,48 +180,4 @@
             });
         });
     </script>
-
-<script>
-    let ctx = document.getElementById("theChart").getContext("2d");
-    let myChart = new Chart(ctx, {
-        type: "line",
-        data: {
-            labels: [
-                "Januari",
-                "Februari",
-                "Maret",
-                "April",
-                "Mei",
-                "Juni",
-                "Juli",
-                "Agustus",
-                "September",
-                "Oktober",
-                "November",
-                "Desember",
-            ],
-            datasets: [
-                {
-                    label: "work load",
-                    data: [1.2, 1.7, 1.5, 2, 2.1, 2.3, 2.2, 2.8, 3.1, 3.2, 3, 3.2],
-                    backgroundColor: "rgba(153,205,1,0.6)",
-                },
-                {
-                    label: "free hours",
-                    data: [1.5, 1.3, 1.8, 2, 2.2, 2.4, 2.8, 3, 3.1, 3.4, 3.6, 3.5],
-                    backgroundColor: "rgba(155,153,10,0.6)",
-                },
-            ],
-        },
-        options: {
-            scales: {
-                y : {
-                    suggestedMin: 0,
-                },
-            },
-        },
-    });
-</script>
-
-
 </body></html>

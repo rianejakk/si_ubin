@@ -1,6 +1,5 @@
 <?php 
     require ('../php/dashboard.php');
-    // require ('../php/mitra_table.php');
 ?>
 
 <!DOCTYPE html>
@@ -59,9 +58,12 @@
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <svg class="svg-inline--fa fa-align-left fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="align-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M288 44v40c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16V44c0-8.837 7.163-16 16-16h256c8.837 0 16 7.163 16 16zM0 172v40c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16zm16 312h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm256-200H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16h256c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16z"></path></svg><!-- <i class="fas fa-align-left"></i> -->
                     </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <svg class="svg-inline--fa fa-align-justify fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="align-justify" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M0 84V44c0-8.837 7.163-16 16-16h416c8.837 0 16 7.163 16 16v40c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16zm16 144h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 256h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0-128h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg><!-- <i class="fas fa-align-justify"></i> -->
-                    </button>
+                    <a href="tambah_mitra.php" class="btn btn-secondary">
+                        <svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="" style="width: 1em; height: 1em;">
+                            <path fill="currentColor" d="M432 208H240V16c0-8.84-7.16-16-16-16s-16 7.16-16 16v192H16c-8.84 0-16 7.16-16 16s7.16 16 16 16h192v192c0 8.84 7.16 16 16 16s16-7.16 16-16V256h192c8.84 0 16-7.16 16-16s-7.16-16-16-16z"></path>
+                        </svg>
+                        Tambah Mitra
+                    </a>
                 </div>
             </nav>
                 
@@ -69,13 +71,13 @@
                 <table class="table table-striped">
                     <thead class="thead-light">
                         <tr>
-                            <th scope="col-2">NIP</th>
                             <th scope="col-2">Nama</th>
+                            <th scope="col-2">NIP</th>
                             <th scope="col-2">Jabatan</th>
                             <th scope="col-2">Edit</th>
                         </tr>
                     </thead>
-
+                    
                     <tbody>
                         <?php
                         $sql = "SELECT * FROM data_mitra";
@@ -83,11 +85,11 @@
                         
                         while($row = $result->fetch_assoc()) {
                             echo "<tr>";
-                            echo "<td>" . $row['id'] . "</td>";
                             echo "<td>" . $row['Nama'] . "</td>";
+                            echo "<td>" . $row['id'] . "</td>";
                             echo "<td>" . $row['Jabatan'] . "</td>";
-                            echo "<td><a href='edit_mitra.php?id=" . $row['id'] . "'>Edit</a>
-                                <a href='delete_mitra.php?id=" . $row['id'] . "'>Delete</a>
+                            echo "<td><a class='btn btn-primary btn-sm' href='edit_mitra.php?id=" . $row['id'] . "'>Edit</a>
+                                <a class='btn btn-danger btn-sm' href='delete_mitra.php?id=" . $row['id'] . "'>Delete</a>
                                 </td>";
                             echo "</tr>";
                         }
@@ -95,9 +97,6 @@
                         ?>
                     </tbody>
                 </table>
-                <!-- <div id="MitraTableContainer"></div>
-                <div class="pagination" id="paginationContainer"></div>
-                <script src="./js/mitra_table.js"></script> -->
             </div>
     </div>
 
