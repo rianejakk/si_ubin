@@ -132,7 +132,7 @@
 
                     <!-- Konten Tab 1 -->
                     <div class="tab-pane fade show active" id="tab1">
-                        <form class="form" action="##" method="post" id="registrationForm">
+                        <form method="post">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
@@ -195,13 +195,12 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
                     </div>
 
                     <!-- Konten Tab 2 -->
                     <div class="tab-pane fade" id="tab2">
                     <div class="container mt-5">
-                        <form class="form" action="##" method="post" id="registrationForm">
+                        <!-- <form class="form" action="##" method="post" id="registrationForm"> -->
                             <h6>Pernah menjadi petugas Sensus/Survei Berikut :</h6>
                             <div class="form-group">
                                 <div class="form-check">
@@ -260,13 +259,13 @@
                                     </label>
                                 </div>
                             </div>
-                        </form>
+                        <!-- </form> -->
                     </div>
                     </div>
 
                     <!-- Konten Tab 3 -->
                     <div class="tab-pane fade" id="tab3">
-                        <form action="upload.php" method="post" enctype="multipart/form-data">
+                        <!-- <form action="upload.php" method="post" enctype="multipart/form-data"> -->
                             <div class="form-group">
                                 <label class="form-check-label">
                                     Foto KTP
@@ -283,12 +282,12 @@
                                 <input type="file" name="file" />
                                 <!-- <input type="submit" name="submit" value="Upload"/> -->
                             </div>
-                        </form>
+                        <!-- </form> -->
                     </div>
 
                     <!-- Konten Tab 4 -->
                     <div class="tab-pane fade" id="tab4">
-                        <form class="form" action="##" method="post" id="registrationForm">
+                        <!-- <form class="form" action="##" method="post" id="registrationForm"> -->
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="password2"><h6>Nama Bank</h6></label>
@@ -303,13 +302,13 @@
                                     <input type="password" class="form-control" name="pemilik_rekening" id="pemilik_rekening">
                                 </div>
                             </div>
-                        </form>
+                        <!-- </form> -->
                     </div>
 
                     <!-- Konten Tab 5 -->
                     <div class="tab-pane fade" id="tab5">
                     <div class="container mt-5">
-                        <form class="form" action="##" method="post" id="registrationForm">
+                        <!-- <form class="form" action="##" method="post" id="registrationForm"> -->
                         <div class="row">
                             <!-- Kolom 1 -->
                         <div class="col-md-5">
@@ -366,7 +365,6 @@
                             </div>
                             </div>
                         </div>
-                        </form>
                         </div>
                     </div>
 
@@ -377,20 +375,33 @@
                             <input type="password" class="form-control" name="catatan" id="catatan">
                         </div>
                     </div>
-
+                    
+                    <!-- Konten Tab 7 -->
                     <div class="tab-pane fade" id="tab7">
-                        
+                    <div class="alert alert-dark" role="alert">
+                        Keterangan<br><hr>
+                        1. Secara sah terikat dengan K/L/D/I lain yang dinyatakan dalam bentuk legal dokumen (kontrak, SK, dsb); dan<br>
+                        2. Menerima honor bulanan/tetap baik dari APBN maupun APBD dari K/L/D/I tersebut.
                     </div>
-
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="hubungan_kerja_lain">
+                                <label class="form-check-label" for="hubungan_kerja_lain">
+                                    Mempunyai Hubungan Kerja dengan K/L Lain
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                         <div class="col-xs-12">
                             <br>
                             <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                            <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                            <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i>Reset</button>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
-
+            
             <!-- Bootstrap JS (optional, but required for certain features like dropdowns) -->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
                         
