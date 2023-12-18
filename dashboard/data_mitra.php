@@ -72,7 +72,7 @@
                     <thead class="thead-light">
                         <tr>
                             <th scope="col-2">Nama</th>
-                            <th scope="col-2">NIP</th>
+                            <th scope="col-2">NIK</th>
                             <th scope="col-2">Jabatan</th>
                             <th scope="col-2">Edit</th>
                         </tr>
@@ -86,10 +86,10 @@
                         while($row = $result->fetch_assoc()) {
                             echo "<tr>";
                             echo "<td>" . $row['Nama'] . "</td>";
-                            echo "<td>" . $row['id'] . "</td>";
+                            echo "<td>" . $row['NIK'] . "</td>";
                             echo "<td>" . $row['Jabatan'] . "</td>";
-                            echo "<td><a class='btn btn-primary btn-sm' href='edit_mitra.php?id=" . $row['id'] . "'>Edit</a>
-                                <a class='btn btn-danger btn-sm' href='delete_mitra.php?id=" . $row['id'] . "'>Delete</a>
+                            echo "<td><a class='btn btn-primary btn-sm' href='edit_mitra.php?id=" . $row['NIK'] . "'>Edit</a>
+                                <a class='btn btn-danger btn-sm' href='delete_mitra.php?id=" . $row['NIK'] . "'>Delete</a>
                                 </td>";
                             echo "</tr>";
                         }
