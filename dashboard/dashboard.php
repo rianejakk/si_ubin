@@ -63,7 +63,7 @@
             </nav>
 
             <div class="container">
-                <canvas id="theChart"></canvas>
+                <canvas id="theChart" class="sizeChart"></canvas>
             </div>
             </div>
     </div>
@@ -94,42 +94,23 @@
 <script>
     let ctx = document.getElementById("theChart").getContext("2d");
     let myChart = new Chart(ctx, {
-        type: "line",
+        type: "pie",
         data: {
             labels: [
-                "Januari",
-                "Februari",
-                "Maret",
-                "April",
-                "Mei",
-                "Juni",
-                "Juli",
-                "Agustus",
-                "September",
-                "Oktober",
-                "November",
-                "Desember",
+                "Laki-Laki",
+                "Perempuan",
             ],
-            datasets: [
-                {
-                    label: "work load",
-                    data: [1.2, 1.7, 1.5, 2, 2.1, 2.3, 2.2, 2.8, 3.1, 3.2, 3, 3.2],
-                    backgroundColor: "rgba(153,205,1,0.6)",
-                },
-                {
-                    label: "free hours",
-                    data: [1.5, 1.3, 1.8, 2, 2.2, 2.4, 2.8, 3, 3.1, 3.4, 3.6, 3.5],
-                    backgroundColor: "rgba(155,153,10,0.6)",
-                },
-            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50],
+                backgroundColor: [
+                'rgb(255, 205, 86)',
+                'rgb(54, 162, 235)',
+                ],
+                hoverOffset: 4
+                }]
         },
-        options: {
-            scales: {
-                y : {
-                    suggestedMin: 0,
-                },
-            },
-        },
+        
     });
 </script>
 

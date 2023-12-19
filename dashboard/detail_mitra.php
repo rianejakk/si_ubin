@@ -1,29 +1,117 @@
 <?php 
-    require ('../php/dashboard.php'); 
-    
-    // Inisiasi variabel
-    $nama = "";
-    $nip = "";
-    $jabatan = "";
+    require ('../php/dashboard.php');
 
+    $nama = "";
+    $nik = "";
+    $mitra_username = "";
+    $email = "";
+    $npwp = "";
+    $alamat = "";
+    $tempat_lahir = "";
+    $tgl_lahir = "";
+    $jk = "";
+    $agama = "";
+    $status_kawin = "";
+    $pendidikan = "";
+    $no_hp = "";
+    $pekerjaan = "";
+
+    //Variabel Checklist
     $pesanError = "";
     $pesanBerhasil = "";
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $nama = $_POST["Nama"];
-        $nip = $_POST["NIP"];
-        $jabatan = $_POST["Jabatan"];
+    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+        
+        if (!isset($_GET["id"])) {
+            header("location: ../dashboard/data_mitra.php?username=" . urlencode($username));
+        }
+
+        $nik = $_GET["id"];
+        $sql = "SELECT * FROM data_mitra WHERE NIK = '$nik'";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+
+        if (!$row) {
+            header("location: ../dashboard/data_mitra.php?username=" . urlencode($username));
+        }
+
+        $nik = $row["NIK"];
+        $nama = $row["Nama"];
+        $mitra_username = $row["username"];
+        $email = $row["Email"];
+        $npwp = $row["NPWP"];
+        $alamat = $row["Alamat"];
+        $tempat_lahir = $row["TempatLahir"];
+        $tgl_lahir = $row["TanggalLahir"];
+        $jk = $row["JenisKelamin"];
+        $agama = $row["Agama"];
+        $status_kawin = $row["StatusPerkawinan"];
+        $pendidikan = $row["PendidikanTerakhir"];
+        $no_hp = $row["NoHandphone"];
+        $pekerjaan = $row["Pekerjaan"];
+        
+
+
+    }
+
+    else {
+        
+        //Variabel Input
+        $nik = $_POST["nik"];
+        $nama = $_POST["nama"];
+        $mitra_username = $_POST["username"];
+        $email = $_POST["email"];
+        $npwp = $_POST["npwp"];
+        $alamat = $_POST["alamat"];
+        $tempat_lahir = $_POST["tempat_lahir"];
+        $tgl_lahir = $_POST["tgl_lahir"];
+        $jk = $_POST["jk"];
+        $agama = $_POST["agama"];
+        $status_kawin = $_POST["status_kawin"];
+        $pendidikan = $_POST["pendidikan"];
+        $no_hp = $_POST["handphone"];
+        $pekerjaan = $_POST["pekerjaan"];
 
         do {
             // Isi semua kolom
-            if (empty($nama) || empty($nip) || empty($jabatan)) {
-                $pesanError = "Semua kolom harus diisi";
+            if (   empty($nama)
+                || empty($nik)
+                || empty($mitra_username)
+                || empty($email)
+                || empty($npwp)
+                || empty($alamat)
+                || empty($tempat_lahir)
+                || empty($tgl_lahir)
+                || empty($jk)
+                || empty($agama)
+                || empty($status_kawin)
+                || empty($pendidikan)
+                || empty($no_hp)
+                || empty($pekerjaan)
+            
+                ) {
+                $pesanError = "Ada kolom yang harus diisi";
                 break;
             }
-
+            
             // Masukkan ke dalam database
-            $sql = "INSERT INTO data_mitra (Nama, NIK, TempatLahir) 
-                    VALUES ('$nama', '$nip', '$jabatan')";
+            $sql = "UPDATE data_mitra
+                    SET NIK = '$nik',
+                        Nama = '$nama',
+                        username = '$mitra_username',
+                        Email = '$email',
+                        NPWP = '$npwp',
+                        Alamat = '$alamat',
+                        TempatLahir = '$tempat_lahir',
+                        TanggalLahir = '$tgl_lahir',
+                        JenisKelamin = '$jk',
+                        Agama = '$agama',
+                        StatusPerkawinan = '$status_kawin',
+                        PendidikanTerakhir = '$pendidikan',
+                        NoHandphone = '$no_hp',
+                        Pekerjaan = '$pekerjaan'
+                    WHERE NIK = '$nik'
+                    ";
 
             $result = $conn->query($sql);
             
@@ -31,13 +119,8 @@
                 $pesanError = "Data tidak valid";
                 break;
             }
-
-            // Kosongkan kolom setelah berhasil
-            $nama = "";
-            $nip = "";
-            $jabatan = "";
             
-            $pesanBerhasil = "Data berhasil ditambahkan";
+            $pesanBerhasil = "Data berhasil diubah";
 
         } while (false);
     }
@@ -103,37 +186,91 @@
                 </div>
             </nav>
             <!-- Konten Disini -->
-                <div class="container my-5">
-                    <h4>Tambah Mitra</h4>
-                    <?php
-                    if (!empty($pesanError)) {
-                        echo "
-                        <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                            <p>$pesanError</p>
-                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                                <span aria-hidden='true'>&times;</span>
-                            </button>
-                        </div>";
-                    }
-                    ?>
-                    <form method="post">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Nama</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="Nama" value="<?php echo $nama; ?>">
+            <h4>Detail Mitra</h4>
+                <div class="container mt-5">
+                <ul class="nav nav-tabs" id="myTabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="tab1-tab" data-bs-toggle="tab" href="#tab1">Profil</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content mt-2">
+
+                    <!-- Konten Tab 1 -->
+                    <div class="tab-pane fade show active" id="tab1">
+                        <form method="post">
+                            <input type="hidden" value="<?php echo $nik; ?>">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label><h6>Nama Lengkap</h6></label>
+                                        <p name="nama" id="nama"><?php echo $nama; ?></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><h6>NIK KTP/Surat Keterangan</h6></label>
+                                        <p name="nik" id="nik" disabled><?php echo $nik; ?></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><h6>Username</h6></label>
+                                        <p name="username" id="username" disabled><?php echo $mitra_username; ?></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><h6>Email</h6></label>
+                                        <p name="email" id="email"><?php echo $email; ?></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><h6>NPWP</h6></label>
+                                        <p name="npwp" id="npwp"><?php echo $npwp; ?></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><h6>Alamat</h6></label>
+                                        <p name="alamat" id="alamat"><?php echo $alamat; ?></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><h6>Tempat Lahir</h6></label>
+                                        <p name="tempat_lahir" id="tempat_lahir"><?php echo $tempat_lahir; ?></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label><h6>Tanggal Lahir</h6></label>
+                                        <p name="tgl_lahir" id="tgl_lahir"><?php echo $tgl_lahir; ?></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><h6>Jenis Kelamin</h6></label>
+                                        <p name="jk" id="jk"><?php echo $jk; ?></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><h6>Agama</h6></label>
+                                        <p name="agama" id="agama"><?php echo $agama; ?></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><h6>Status Perkawinan</h6></label>
+                                        <p name="status_kawin" id="status_kawin"><?php echo $status_kawin; ?></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><h6>Pendidikan Terakhir</h6></label>
+                                        <p name="pendidikan" id="pendidikan"><?php echo $pendidikan; ?></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><h6>Handphone</h6></label>
+                                        <p name="handphone" id="handphone"><?php echo $no_hp; ?></p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><h6>Pekerjaan</h6></label>
+                                        <p name="pekerjaan" id="pekerjaan"><?php echo $pekerjaan; ?></p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">NIP</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="NIP" value="<?php echo $nip; ?>">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Jabatan</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="Jabatan" value="<?php echo $jabatan; ?>">
-                            </div>
+
+
+                    </div>
+
+                    
+                        <div class="col-xs-12">
+                            <br>
+                            
+                            <a class="btn btn-secondary" href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">Kembali</a>
                         </div>
                         <?php 
                             if (!empty($pesanBerhasil)) {
@@ -146,16 +283,14 @@
                                 </div>";
                             }
                         ?>
-                        <div class="row mb-3">
-                            <div class="offset-sm-3 col-sm-2 d-grid">
-                                <button type="submit" class="btn btn-primary" name="submit">Tambah</button>
-                            </div>
-                            <div class="col-sm-3 d-grid">
-                                <a class="btn btn-danger" href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">Batal</a>
-                        </div>
-                        </div>
+                    </div>
                     </form>
                 </div>
+            </div>
+
+            <!-- Bootstrap JS (optional, but required for certain features like dropdowns) -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                        
             </div>
     </div>
 
@@ -181,4 +316,5 @@
             });
         });
     </script>
-</body></html>
+</body>
+</html>

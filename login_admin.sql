@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2023 at 08:04 AM
+-- Generation Time: Dec 19, 2023 at 04:09 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -91,6 +91,26 @@ INSERT INTO `data_mitra` (`sobat-id`, `NIK`, `Nama`, `username`, `Email`, `NPWP`
 ('', '3509223655731184', 'Lestari Dwi', '', '', '', '', '', NULL, '', 'Petugas Mitra', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, '', '', '', 0, '', '', 0, 0, 0, 0, '', 0),
 ('', '3509271758281123', 'Oden Mahaputra', '', '', '', '', '', NULL, '', 'Petugas Mitra', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, '', '', '', 0, '', '', 0, 0, 0, 0, '', 0);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_admin`
+--
+
+CREATE TABLE `user_admin` (
+  `id` int(6) NOT NULL,
+  `username` varchar(32) NOT NULL,
+  `pass` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_admin`
+--
+
+INSERT INTO `user_admin` (`id`, `username`, `pass`) VALUES
+(1, 'admin', 'admin'),
+(2, 'admin2', 'admin2');
+
 --
 -- Indexes for dumped tables
 --
@@ -100,6 +120,22 @@ INSERT INTO `data_mitra` (`sobat-id`, `NIK`, `Nama`, `username`, `Email`, `NPWP`
 --
 ALTER TABLE `data_mitra`
   ADD PRIMARY KEY (`NIK`);
+
+--
+-- Indexes for table `user_admin`
+--
+ALTER TABLE `user_admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `user_admin`
+--
+ALTER TABLE `user_admin`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

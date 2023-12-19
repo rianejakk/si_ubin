@@ -1,6 +1,10 @@
 <?php
 require ('connect.php');
 
+if (isset($_POST['btn-login'])) {
+    
+
+
 // Process login form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -26,9 +30,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: ../dashboard/dashboard.php?username=".urlencode($username));
         exit();
     } else {
-        echo "Invalid username or password";
+        echo "
+        <script>
+        setTimeout(function() {
+			Swal.fire({
+				title: 'Oops, error!',
+				text: 'Invalid username or password.',
+				icon: 'error',
+				padding: '0px 0px 30px 0px',
+				showConfirmButton: false,
+			});
+		},40);
+        </script>
+        ";
     }
 }
+}
+
 
 $conn->close();
 ?>

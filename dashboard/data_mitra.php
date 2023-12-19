@@ -17,10 +17,12 @@
     <link rel="stylesheet" href="./rsc/style2.css">
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="./rsc/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <!-- Font Awesome JS -->
     <script defer="" src="./rsc/solid.js.download" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer="" src="./rsc/fontawesome.js.download" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -58,7 +60,7 @@
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <svg class="svg-inline--fa fa-align-left fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="align-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M288 44v40c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16V44c0-8.837 7.163-16 16-16h256c8.837 0 16 7.163 16 16zM0 172v40c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16zm16 312h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm256-200H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16h256c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16z"></path></svg><!-- <i class="fas fa-align-left"></i> -->
                     </button>
-                    <a href="tambah_mitra.php" class="btn btn-secondary">
+                    <a href="tambah_mitra2.php?username=<?php echo urlencode($username); ?>" class="btn btn-secondary">
                         <svg class="svg-inline--fa fa-plus fa-w-14" aria-hidden="true" data-prefix="fas" data-icon="plus" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="" style="width: 1em; height: 1em;">
                             <path fill="currentColor" d="M432 208H240V16c0-8.84-7.16-16-16-16s-16 7.16-16 16v192H16c-8.84 0-16 7.16-16 16s7.16 16 16 16h192v192c0 8.84 7.16 16 16 16s16-7.16 16-16V256h192c8.84 0 16-7.16 16-16s-7.16-16-16-16z"></path>
                         </svg>
@@ -73,7 +75,7 @@
                         <tr>
                             <th scope="col-2">Nama</th>
                             <th scope="col-2">NIK</th>
-                            <th scope="col-2">Jabatan</th>
+                            <th scope="col-2">Alamat</th>
                             <th scope="col-2">Edit</th>
                         </tr>
                     </thead>
@@ -85,11 +87,12 @@
                         
                         while($row = $result->fetch_assoc()) {
                             echo "<tr>";
-                            echo "<td>" . $row['Nama'] . "</td>";
+                            // echo "<td>" . $row['Nama'] . "</td>";
+                            echo "<td><a href='detail_mitra.php?id=" . $row['NIK'] . "'>" . $row['Nama'] . "</a></td>";
                             echo "<td>" . $row['NIK'] . "</td>";
-                            echo "<td>" . $row['Jabatan'] . "</td>";
+                            echo "<td>" . $row['Alamat'] . "</td>";
                             echo "<td><a class='btn btn-primary btn-sm' href='edit_mitra.php?id=" . $row['NIK'] . "'>Edit</a>
-                                <a class='btn btn-danger btn-sm' href='delete_mitra.php?id=" . $row['NIK'] . "'>Delete</a>
+                                <button class='btn btn-danger btn-sm' onclick='confirmDelete(\"" . $row['NIK'] . "\")'>Delete</button>
                                 </td>";
                             echo "</tr>";
                         }
@@ -122,6 +125,26 @@
             });
         });
     </script>
+
+    <script type="text/javascript">
+    function confirmDelete(nik) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Hapus'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If user clicks "Yes", redirect to delete_mitra.php with the NIK parameter
+                window.location.href = '../php/delete_mitra.php?id=' + nik;
+            }
+        });
+    }
+</script>
+
 
 
 </body></html>
