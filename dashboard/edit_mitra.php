@@ -24,15 +24,18 @@
         
         if (!isset($_GET["id"])) {
             header("location: ../dashboard/data_mitra.php?username=" . urlencode($username));
+            exit;
         }
 
         $nik = $_GET["id"];
+
         $sql = "SELECT * FROM data_mitra WHERE NIK = '$nik'";
         $result = $conn->query($sql);
         $row = $result->fetch_assoc();
 
         if (!$row) {
             header("location: ../dashboard/data_mitra.php?username=" . urlencode($username));
+            exit;
         }
 
         $nik = $row["NIK"];
@@ -49,80 +52,6 @@
         $pendidikan = $row["PendidikanTerakhir"];
         $no_hp = $row["NoHandphone"];
         $pekerjaan = $row["Pekerjaan"];
-        
-
-
-    }
-
-    else {
-        
-        //Variabel Input
-        $nik = $_POST["nik"];
-        $nama = $_POST["nama"];
-        $mitra_username = $_POST["username"];
-        $email = $_POST["email"];
-        $npwp = $_POST["npwp"];
-        $alamat = $_POST["alamat"];
-        $tempat_lahir = $_POST["tempat_lahir"];
-        $tgl_lahir = $_POST["tgl_lahir"];
-        $jk = $_POST["jk"];
-        $agama = $_POST["agama"];
-        $status_kawin = $_POST["status_kawin"];
-        $pendidikan = $_POST["pendidikan"];
-        $no_hp = $_POST["handphone"];
-        $pekerjaan = $_POST["pekerjaan"];
-
-        do {
-            // Isi semua kolom
-            if (   empty($nama)
-                || empty($nik)
-                || empty($mitra_username)
-                || empty($email)
-                || empty($npwp)
-                || empty($alamat)
-                || empty($tempat_lahir)
-                || empty($tgl_lahir)
-                || empty($jk)
-                || empty($agama)
-                || empty($status_kawin)
-                || empty($pendidikan)
-                || empty($no_hp)
-                || empty($pekerjaan)
-            
-                ) {
-                $pesanError = "Ada kolom yang harus diisi";
-                break;
-            }
-            
-            // Masukkan ke dalam database
-            $sql = "UPDATE data_mitra
-                    SET NIK = '$nik',
-                        Nama = '$nama',
-                        username = '$mitra_username',
-                        Email = '$email',
-                        NPWP = '$npwp',
-                        Alamat = '$alamat',
-                        TempatLahir = '$tempat_lahir',
-                        TanggalLahir = '$tgl_lahir',
-                        JenisKelamin = '$jk',
-                        Agama = '$agama',
-                        StatusPerkawinan = '$status_kawin',
-                        PendidikanTerakhir = '$pendidikan',
-                        NoHandphone = '$no_hp',
-                        Pekerjaan = '$pekerjaan'
-                    WHERE NIK = '$nik'
-                    ";
-
-            $result = $conn->query($sql);
-            
-            if (!$result) {
-                $pesanError = "Data tidak valid";
-                break;
-            }
-            
-            $pesanBerhasil = "Data berhasil diubah";
-
-        } while (false);
     }
 ?>
 
@@ -198,7 +127,7 @@
 
                     <!-- Konten Tab 1 -->
                     <div class="tab-pane fade show active" id="tab1">
-                        <form method="post">
+                        <form method="post" action="../php/update_mitra.php">
                             <input type="hidden" value="<?php echo $nik; ?>">
                         <div class="row">
                             <div class="col-md-5">
@@ -223,11 +152,11 @@
                                 </script> -->
                                 <div class="form-group">
                                     <label><h6>NIK KTP/Surat Keterangan</h6></label>
-                                    <input type="text" class="form-control" name="nik" id="nik" value="<?php echo $nik; ?>" disabled>
+                                    <input type="text" class="form-control" name="NIK" value="<?php echo $nik; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Username</h6></label>
-                                    <input type="text" class="form-control" name="username" id="username" value="<?php echo $mitra_username; ?>" disabled>
+                                    <input type="text" class="form-control" name="username" value="<?php echo $mitra_username; ?>">
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Email</h6></label>
@@ -253,7 +182,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Jenis Kelamin</h6></label>
-                                    <input type="text" class="form-control" name="jk" id="jk" value="<?php echo $jk; ?>">
+                                    <!-- <input type="text" class="form-control" name="jk" id="jk" value=""> -->
+                                    <select name="jk" class="custom-select">
+                                    <option value="">- Pilih jenis kelamin -</option>
+                                    <option value="Perempuan" <?php if($row['JenisKelamin'] == 'Perempuan') {echo"selected";} ?>>Perempuan</option>
+                                    <option value="Laki-laki" <?php if($row['JenisKelamin'] == 'Laki-Laki') {echo"selected";} ?>>Laki-Laki</option>
+						            </select>
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Agama</h6></label>

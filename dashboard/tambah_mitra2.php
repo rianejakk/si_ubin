@@ -40,7 +40,7 @@
         $alamat = $_POST["alamat"];
         $tempat_lahir = $_POST["tempat_lahir"];
         $tgl_lahir = $_POST["tgl_lahir"];
-        $jk = $_POST["jk"];
+        $jk = $_POST["JenisKelamin"];
         $agama = $_POST["agama"];
         $status_kawin = $_POST["status_kawin"];
         $pendidikan = $_POST["pendidikan"];
@@ -299,20 +299,47 @@
                                     <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" value="<?php echo $tgl_lahir; ?>">
                                 </div>
                                 <div class="form-group">
-                                    <label><h6>Jenis Kelamin</h6></label>
-                                    <input type="text" class="form-control" name="jk" id="jk" value="<?php echo $jk; ?>">
+                                    <!-- <label><h6>Jenis Kelamin</h6></label> -->
+                                    <!-- <input type="text" class="form-control" name="jk" id="jk" value=""> -->
+                                    <label for="Nama">Jenis Kelamin*</label>
+						            <select name="JenisKelamin" class="custom-select" >
+                                        <option value="<?php echo $jk; ?>">- Pilih Jenis Kelamin -</option>
+                                        <option value="Laki-Laki">Laki-Laki</option>
+                                        <option value="Perempuan">Perempuan</option>
+						            </select>
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Agama</h6></label>
-                                    <input type="text" class="form-control" name="agama" id="agama" value="<?php echo $agama; ?>">
+                                    <!-- <input type="text" class="form-control" name="agama" id="agama" value=""> -->
+                                    <select name="agama" class="custom-select" >
+                                        <option value="<?php echo $agama; ?>">- Pilih Agama -</option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Kristen">Kristen</option>
+                                        <option value="Katolik">Katolik</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                        <option value="Konghucu">Konghucu</option>
+						            </select>
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Status Perkawinan</h6></label>
-                                    <input type="text" class="form-control" name="status_kawin" id="status_kawin" value="<?php echo $status_kawin; ?>">
+                                    <!-- <input type="text" class="form-control" name="status_kawin" id="status_kawin" value="">-->
+                                    <select name="status_kawin" class="custom-select" >
+                                        <option value="<?php echo $status_kawin; ?>">- Pilih Status Perkawinan -</option>
+                                        <option value="Belum Menikah">Belum Menikah</option>
+                                        <option value="Sudah Menikah">Sudah Menikah</option>
+						            </select>
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Pendidikan Terakhir</h6></label>
-                                    <input type="text" class="form-control" name="pendidikan" id="pendidikan" value="<?php echo $pendidikan; ?>">
+                                    <!-- <input type="text" class="form-control" name="pendidikan" id="pendidikan" value=""> -->
+                                    <select name="pendidikan" class="custom-select" >
+                                        <option value="<?php echo $pendidikan; ?>">- Pilih Pendidikan Terakhir -</option>
+                                        <option value="SMA/SMK/MA">SMA/SMK/MA</option>
+                                        <option value="D3">D3</option>
+                                        <option value="D4">D3/S1</option>
+                                        <option value="S2">S2</option>
+						            </select>
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Handphone</h6></label>
