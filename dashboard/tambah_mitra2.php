@@ -1,174 +1,5 @@
 <?php 
     require ('../php/dashboard.php'); 
-
-    // Inisiasi variabel input
-    $nama = "";
-    $nik = "";
-    $mitra_username = "";
-    $email = "";
-    $npwp = "";
-    $alamat = "";
-    $tempat_lahir = "";
-    $tgl_lahir = "";
-    $jk = "";
-    $agama = "";
-    $status_kawin = "";
-    $pendidikan = "";
-    $no_hp = "";
-    $pekerjaan = "";
-    // $nama_bank = "";
-    // $no_rekening = "";
-    // $pemilik_rekening = "";
-    // $merk_hp = "";
-    // $tipe_hp = "";
-    // $catatan = "";
-
-    // Inisiasi variabel checklist
-
-    //Variabel Checklist
-    $pesanError = "";
-    $pesanBerhasil = "";
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        
-        //Variabel Input
-        $nik = $_POST["nik"];
-        $nama = $_POST["nama"];
-        $mitra_username = $_POST["username"];
-        $email = $_POST["email"];
-        $npwp = $_POST["npwp"];
-        $alamat = $_POST["alamat"];
-        $tempat_lahir = $_POST["tempat_lahir"];
-        $tgl_lahir = $_POST["tgl_lahir"];
-        $jk = $_POST["JenisKelamin"];
-        $agama = $_POST["agama"];
-        $status_kawin = $_POST["status_kawin"];
-        $pendidikan = $_POST["pendidikan"];
-        $no_hp = $_POST["handphone"];
-        $pekerjaan = $_POST["pekerjaan"];
-        // $sensus_penduduk = isset($_POST["sensus_penduduk"]) ? 1 : 0;
-        // echo $sensus_penduduk;
-        // $sensus_pertanian = isset($_POST["sensus_pertanian"]) ? 1 : 0;
-        // echo $sensus_pertanian;
-        // $sensus_ekonomi = isset($_POST["sensus_ekonomi"]) ? 1 : 0;
-        // echo $sensus_ekonomi;
-        // $survei_sen = isset($_POST["survei_sen"]) ? 1 : 0;
-        // echo $survei_sen;
-        // $survei_akn = isset($_POST["survei_akn"]) ? 1 : 0;
-        // echo $survei_akn;
-        // $survei_biaya_hidup = isset($_POST["survei_biaya_hidup"]) ? 1 : 0;
-        // echo $survei_biaya_hidup;
-        // $capi = isset($_POST["capi"]) ? 1 : 0;
-        // echo $capi;
-        // $nama_bank = $_POST["Nama Bank"];
-        // $no_rekening = $_POST["Nomor Rekening"];
-        // $pemilik_rekening = $_POST["Nama Pemilik Rekening"];
-        // $hp_android = isset($_POST["hp_android"]) ? 1 : 0;
-        // echo $hp_android;
-        // $merk_hp = $_POST["Merk HP"];
-        // $tipe_hp = $_POST["Tipe HP"];
-        // $kendaraan_bermotor = isset($_POST["kendaraan_bermotor"]) ? 1 : 0;
-        // echo $kendaraan_bermotor;
-        // $bisa_motor = isset($_POST["bisa_motor"]) ? 1 : 0;
-        // echo $bisa_motor;
-        // $laptop = isset($_POST["laptop"]) ? 1 : 0;
-        // echo $laptop;
-        // $op_pc = isset($_POST["op_pc"]) ? 1 : 0;
-        // echo $op_pc;
-        // $catatan = $_POST["Catatan"];
-        // $hubungan_kerja_lain = isset($_POST["hubungan_kerja_lain"]) ? 1 : 0;
-        // echo $hubungan_kerja_lain;
-
-        // Variabel file
-        // Foto KTP
-        // $ktp = $_FILES['foto_ktp'];
-        // $ktp_name = $ktp['name'];
-        // $ktp_tmp = $ktp['tmp_name'];
-        
-        // $ktp_data = file_get_contents($ktp);
-        
-        // // Foto Ijazah
-        // $ijazah = $_FILES['ijazah'];
-        // $ijazah_name = $ijazah['name'];
-        // $ijazah_tmp = $ijazah['tmp_name'];
-        
-        // $ijazah_data = file_get_contents($ijazah);
-
-        do {
-            // Isi semua kolom
-            if (   empty($nama)
-                || empty($nik)
-                || empty($mitra_username)
-                || empty($email)
-                || empty($npwp)
-                || empty($alamat)
-                || empty($tempat_lahir)
-                || empty($tgl_lahir)
-                || empty($jk)
-                || empty($agama)
-                || empty($status_kawin)
-                || empty($pendidikan)
-                || empty($no_hp)
-                || empty($pekerjaan)
-                // || empty($nama_bank)
-                // || empty($no_rekening)
-                // || empty($pemilik_rekening)
-                ) {
-                $pesanError = "Ada kolom yang harus diisi";
-                break;
-            }
-            
-            // Masukkan ke dalam database
-            $sql = "INSERT INTO data_mitra (
-                    NIK,
-                    Nama,
-                    username,
-                    Email,
-                    NPWP,
-                    Alamat,
-                    TempatLahir,
-                    TanggalLahir,
-                    JenisKelamin,
-                    Agama,
-                    StatusPerkawinan,
-                    PendidikanTerakhir,
-                    NoHandphone,
-                    Pekerjaan
-                    )
-
-                    VALUES (
-                        '$nik',
-                        '$nama',
-                        '$mitra_username',
-                        '$email',
-                        '$npwp',
-                        '$alamat',
-                        '$tempat_lahir',
-                        '$tgl_lahir',
-                        '$jk',
-                        '$agama',
-                        '$status_kawin',
-                        '$pendidikan',
-                        '$no_hp',
-                        '$pekerjaan'
-                    )";
-
-            $result = $conn->query($sql);
-            
-            if (!$result) {
-                $pesanError = "Data tidak valid";
-                break;
-            }
-            
-            // Kosongkan kolom setelah berhasil
-            // $nama = "";
-            // $nip = "";
-            // $jabatan = "";
-            
-            $pesanBerhasil = "Data berhasil ditambahkan";
-
-        } while (false);
-    }
 ?>
 
 <!DOCTYPE html>
@@ -239,11 +70,11 @@
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2">Pengalaman</a>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a class="nav-link" id="tab3-tab" data-bs-toggle="tab" href="#tab3">File Administrasi</a>
-                    </li>
-                    <li class="nav-item">
+                    </li> -->
+                    <!-- <li class="nav-item">
                         <a class="nav-link" id="tab4-tab" data-bs-toggle="tab" href="#tab4">Rekening</a>
                     </li>
                     <li class="nav-item">
@@ -261,42 +92,42 @@
 
                     <!-- Konten Tab 1 -->
                     <div class="tab-pane fade show active" id="tab1">
-                        <form method="post">
+                        <form method="post" autocomplete="off" action="../php/add_mitra.php">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label><h6>Nama Lengkap</h6></label>
-                                    <input type="text" class="form-control" name="nama" id="nama" value="<?php echo $nama; ?>">
+                                    <input type="text" class="form-control" name="Nama" id="Nama">
                                 </div>
                                 <div class="form-group">
                                     <label><h6>NIK KTP/Surat Keterangan</h6></label>
-                                    <input type="text" class="form-control" name="nik" id="nik" value="<?php echo $nik; ?>">
+                                    <input type="text" class="form-control" name="NIK" id="NIK">
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Username</h6></label>
-                                    <input type="text" class="form-control" name="username" id="username" value="<?php echo $mitra_username; ?>">
+                                    <input type="text" class="form-control" name="username" id="username">
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Email</h6></label>
-                                    <input type="text" class="form-control" name="email" id="email" value="<?php echo $email; ?>">
+                                    <input type="text" class="form-control" name="Email" id="Email">
                                 </div>
                                 <div class="form-group">
                                     <label><h6>NPWP</h6></label>
-                                    <input type="text" class="form-control" name="npwp" id="npwp" value="<?php echo $npwp; ?>">
+                                    <input type="text" class="form-control" name="NPWP" id="NPWP">
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Alamat</h6></label>
-                                    <input type="text" class="form-control" name="alamat" id="alamat" value="<?php echo $alamat; ?>">
+                                    <input type="text" class="form-control" name="Alamat" id="Alamat">
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Tempat Lahir</h6></label>
-                                    <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" value="<?php echo $tempat_lahir; ?>">
+                                    <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir">
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label><h6>Tanggal Lahir</h6></label>
-                                    <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" value="<?php echo $tgl_lahir; ?>">
+                                    <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir">
                                 </div>
                                 <div class="form-group">
                                     <!-- <label><h6>Jenis Kelamin</h6></label> -->
@@ -311,7 +142,7 @@
                                 <div class="form-group">
                                     <label><h6>Agama</h6></label>
                                     <!-- <input type="text" class="form-control" name="agama" id="agama" value=""> -->
-                                    <select name="agama" class="custom-select" >
+                                    <select name="Agama" class="custom-select" >
                                         <option value="<?php echo $agama; ?>">- Pilih Agama -</option>
                                         <option value="Islam">Islam</option>
                                         <option value="Kristen">Kristen</option>
@@ -337,17 +168,17 @@
                                         <option value="<?php echo $pendidikan; ?>">- Pilih Pendidikan Terakhir -</option>
                                         <option value="SMA/SMK/MA">SMA/SMK/MA</option>
                                         <option value="D3">D3</option>
-                                        <option value="D4">D3/S1</option>
+                                        <option value="D4">D4/S1</option>
                                         <option value="S2">S2</option>
 						            </select>
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Handphone</h6></label>
-                                    <input type="text" class="form-control" name="handphone" id="handphone" value="<?php echo $no_hp; ?>">
+                                    <input type="text" class="form-control" name="handphone" id="handphone">
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Pekerjaan</h6></label>
-                                    <input type="text" class="form-control" name="pekerjaan" id="pekerjaan" value="<?php echo $pekerjaan; ?>">
+                                    <input type="text" class="form-control" name="pekerjaan" id="pekerjaan">
                                 </div>
                             </div>
                         </div>
@@ -419,7 +250,7 @@
                     <!-- </div>
                     </div> -->
 
-                    <!-- Konten Tab 3 -->
+                    <!-- Konten Tab 3 File Administrasi-->
                     <!-- <div class="tab-pane fade" id="tab3">
                         <form action="upload.php" method="post" enctype="multipart/form-data">
                             <div class="form-group">
@@ -438,8 +269,8 @@
                                 <input type="file" name="ijazah" id="ijazah"/>
                                 <input type="submit" name="submit" value="Upload"/>
                             </div>
-                        </form> -->
-                    <!-- </div> -->
+                        </form>
+                    </div> -->
 
                     <!-- Konten Tab 4 -->
                     <!-- <div class="tab-pane fade" id="tab4"> -->
@@ -447,15 +278,15 @@
                             <!-- <div class="col-md-5">
                                 <div class="form-group">
                                     <label><h6>Nama Bank</h6></label>
-                                    <input type="text" class="form-control" name="nama_bank" id="nama_bank" value="">
+                                    <input type="text" class="form-control" name="nama_bank" id="nama_bank">
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Nomor Rekening</h6></label>
-                                    <input type="text" class="form-control" name="no_rekening" id="no_rekening" value="">
+                                    <input type="text" class="form-control" name="no_rekening" id="no_rekening">
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Nama Pemilik Rekening</h6></label>
-                                    <input type="text" class="form-control" name="pemilik_rekening" id="pemilik_rekening" value="">
+                                    <input type="text" class="form-control" name="pemilik_rekening" id="pemilik_rekening">
                                 </div>
                             </div> -->
                         <!-- </form> -->
@@ -478,11 +309,11 @@
                             </div>
                             <div class="form-group">
                                     <label><h6>Merk HP</h6></label>
-                                    <input type="text" class="form-control" name="merk_hp" id="merk_hp" value="">
+                                    <input type="text" class="form-control" name="merk_hp" id="merk_hp">
                             </div>
                             <div class="form-group">
                                     <label><h6>Tipe HP</h6></label>
-                                    <input type="text" class="form-control" name="tipe_hp" id="tipe_hp" value="">
+                                    <input type="text" class="form-control" name="tipe_hp" id="tipe_hp">
                             </div>
                         </div> -->
                         <!-- Kolom 2 -->
@@ -528,7 +359,7 @@
                     <!-- <div class="tab-pane fade" id="tab6">
                         <div class="form-group">
                             <label><h5>Catatan</h5></label>
-                            <input type="text" class="form-control" name="catatan" id="catatan" value="">
+                            <input type="text" class="form-control" name="catatan" id="catatan">
                         </div>
                     </div> -->
                     

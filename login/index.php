@@ -35,7 +35,7 @@
 				?>
 				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" method="post">
 					<span class="login100-form-title">
-						SI-UBIN V1.0.0
+						SI-UBIN
 					</span>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">

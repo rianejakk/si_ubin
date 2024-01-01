@@ -88,10 +88,10 @@
             </div>
 
             <ul class="list-unstyled components">
-                <li class="active">
+                <li>
                     <a href="../dashboard/dashboard.php?username=<?php echo urlencode($username); ?>">Beranda</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">Data Mitra</a>
                 </li>
             </ul>
@@ -135,21 +135,6 @@
                                     <label><h6>Nama Lengkap</h6></label>
                                     <input type="text" class="form-control" name="nama" id="nama" value="<?php echo $nama; ?>">
                                 </div>
-                                <!-- <script>
-                                    function validateInput() {
-                                        var inputElement = document.getElementById("nik");
-                                        var inputValue = inputElement.value;
-
-                                        // Use a regular expression to check if the input contains only numbers
-                                        if (!/^\d+$/.test(inputValue)) {
-                                            alert("Please enter only numeric values.");
-                                            inputElement.value = ""; // Clear the input field
-                                            return false;
-                                        }
-
-                                        return true;
-                                    }
-                                </script> -->
                                 <div class="form-group">
                                     <label><h6>NIK KTP/Surat Keterangan</h6></label>
                                     <input type="text" class="form-control" name="NIK" value="<?php echo $nik; ?>">
@@ -191,7 +176,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Agama</h6></label>
-                                    <input type="text" class="form-control" name="agama" id="agama" value="<?php echo $agama; ?>">
+                                    <!-- <input type="text" class="form-control" name="agama" id="agama" value=""> -->
+                                    <select name="agama" class="custom-select">
+                                    <option value="">- Pilih Agama -</option>
+                                    <option value="Islam" <?php if($row['Agama'] == 'Islam') {echo"selected";} ?>>Islam</option>
+                                    <option value="Kristen" <?php if($row['Agama'] == 'Kristen') {echo"selected";} ?>>Kristen</option>
+                                    <option value="Katolik" <?php if($row['Agama'] == 'Katolik') {echo"selected";} ?>>Katolik</option>
+                                    <option value="Hindu" <?php if($row['Agama'] == 'Hindu') {echo"selected";} ?>>Hindu</option>
+                                    <option value="Budha" <?php if($row['Agama'] == 'Budha') {echo"selected";} ?>>Budha</option>
+                                    <option value="Konghucu" <?php if($row['Agama'] == 'Konghucu') {echo"selected";} ?>>Konghucu</option>
+						            </select>
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Status Perkawinan</h6></label>

@@ -1,28 +1,5 @@
 <?php
-    // Inisiasi variabel input
-    $nama = "";
-    $nik = "";
-    $username = "";
-    $email = "";
-    $npwp = "";
-    $alamat = "";
-    $tempat_lahir = "";
-    $tgl_lahir = "";
-    $jk = "";
-    $agama = "";
-    $status_kawin = "";
-    $pendidikan = "";
-    $no_hp = "";
-    $pekerjaan = "";
-    // $nama_bank = "";
-    // $no_rekening = "";
-    // $pemilik_rekening = "";
-    // $merk_hp = "";
-    // $tipe_hp = "";
-    // $catatan = "";
-
-    // Inisiasi variabel checklist
-
+    require ('connect.php');
     //Variabel Checklist
     $pesanError = "";
     $pesanBerhasil = "";
@@ -32,18 +9,18 @@
         //Variabel Input
         $nik = $_POST["NIK"];
         $nama = $_POST["Nama"];
-        $username = $_POST["username"];
+        $mitra_username = $_POST["username"];
         $email = $_POST["Email"];
         $npwp = $_POST["NPWP"];
         $alamat = $_POST["Alamat"];
-        $tempat_lahir = $_POST["Tempat Lahir"];
-        $tgl_lahir = $_POST["Tanggal Lahir"];
-        $jk = $_POST["Jenis Kelamin"];
+        $tempat_lahir = $_POST["tempat_lahir"];
+        $tgl_lahir = $_POST["tgl_lahir"];
+        $jk = $_POST["JenisKelamin"];
         $agama = $_POST["Agama"];
-        $status_kawin = $_POST["Status Perkawinan"];
-        $pendidikan = $_POST["Pendidikan Terakhir"];
-        $no_hp = $_POST["No Handphone"];
-        $pekerjaan = $_POST["Pekerjaan"];
+        $status_kawin = $_POST["status_kawin"];
+        $pendidikan = $_POST["pendidikan"];
+        $no_hp = $_POST["handphone"];
+        $pekerjaan = $_POST["pekerjaan"];
         // $sensus_penduduk = isset($_POST["sensus_penduduk"]) ? 1 : 0;
         // echo $sensus_penduduk;
         // $sensus_pertanian = isset($_POST["sensus_pertanian"]) ? 1 : 0;
@@ -106,8 +83,8 @@
                 || empty($agama)
                 || empty($status_kawin)
                 || empty($pendidikan)
-                || empty($no_hp)
-                || empty($pekerjaan)
+                // || empty($no_hp)
+                // || empty($pekerjaan)
                 // || empty($nama_bank)
                 // || empty($no_rekening)
                 // || empty($pemilik_rekening)
@@ -124,20 +101,20 @@
                     Email,
                     NPWP,
                     Alamat,
-                    Tempat Lahir,
-                    Tanggal Lahir,
-                    Jenis Kelamin,
+                    TempatLahir,
+                    TanggalLahir,
+                    JenisKelamin,
                     Agama,
-                    Status Perkawinan,
-                    Pendidikan Terakhir,
-                    No Handphone,
+                    StatusPerkawinan,
+                    PendidikanTerakhir,
+                    NoHandphone,
                     Pekerjaan
                     )
 
                     VALUES (
                         '$nik',
                         '$nama',
-                        '$username',
+                        '$mitra_username',
                         '$email',
                         '$npwp',
                         '$alamat',
@@ -148,7 +125,7 @@
                         '$status_kawin',
                         '$pendidikan',
                         '$no_hp',
-                        '$pekerjaan',
+                        '$pekerjaan'
                     )";
 
             $result = $conn->query($sql);
@@ -165,6 +142,23 @@
             
             $pesanBerhasil = "Data berhasil ditambahkan";
 
+            // echo "
+			// 	<script>
+			// 		setTimeout(function() { 
+			// 			Swal.fire({
+			// 				title: 'Berhasil menambahkah data!',
+			// 				text: 'Kembali ke halaman data mitra',
+			// 				icon: 'success',
+			// 			});
+			// 		},10);  
+			// 		window.setTimeout(function(){ 
+			// 			window.location.replace('../dashboard/data_mitra.php?');
+			// 		},1500);
+			// 	</script>
+			// ";
+            header ("location: ../dashboard/data_mitra.php?username=" . urlencode($username));
+
         } while (false);
     }
 ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

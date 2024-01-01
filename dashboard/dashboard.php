@@ -36,13 +36,19 @@
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="../dashboard/dashboard.php?username=<?php echo urlencode($username); ?>">Beranda</a>
+                    <a href="../dashboard/dashboard.php?username=<?php echo urlencode($username); ?>">
+                        <i class="fas fa-home"></i>
+                        Beranda
+                    </a>
                 </li>
                 <li>
-                    <a href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">Data Mitra</a>
+                    <a href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">
+                    <i class="fas fa-users"></i>
+                    Data Mitra
+                    </a>
                 </li>
             </ul>
-            <ul class="list-unstyled CTAs">
+            <ul class="list-unstyled CTAs logout-button-container">
                 <li>
                     <a href="../php/logout.php"><?php echo htmlspecialchars($username); ?> | Log Out</a>
                 </li>
@@ -61,11 +67,15 @@
                     </button>
                 </div>
             </nav>
-
-            <div class="container">
-                <canvas id="theChart" class="sizeChart"></canvas>
-            </div>
-            </div>
+                <div class="chartCard">
+                    <div class="chartBox">
+                        <canvas id="mitraLaki&Perempuan" class="chart-mitra-gender"></canvas>
+                    </div>
+                    <div class="chartBox">
+                        <canvas id="pendidikanMitra" class="chart-mitra-pendidikan"></canvas>
+                    </div>
+                </div>
+        </div>
     </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
@@ -92,8 +102,8 @@
     </script>
 
 <script>
-    let ctx = document.getElementById("theChart").getContext("2d");
-    let myChart = new Chart(ctx, {
+    let cmg = document.getElementById("mitraLaki&Perempuan").getContext("2d");
+    let chartGender = new Chart(cmg, {
         type: "pie",
         data: {
             labels: [
@@ -110,7 +120,44 @@
                 hoverOffset: 4
                 }]
         },
-        
+        options : {
+            title: {
+                display : true,
+                text : 'Perbandingan Mitra Laki-laki dan Perempuan'
+            }
+        }
+    });
+</script>
+
+<script>
+    let cmp = document.getElementById("pendidikanMitra").getContext("2d");
+    let chartPendidikan = new Chart(cmp, {
+        type: "pie",
+        data: {
+            labels: [
+                "SMA/SMK/MA",
+                "D3",
+                "D4/S1",
+                "S2",
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100, 125],
+                backgroundColor: [
+                'rgb(255, 205, 86)',
+                'rgb(54, 162, 235)',
+                'rgb(54, 162, 235)',
+                'rgb(54, 162, 235)',
+                ],
+                hoverOffset: 4
+                }]
+        },
+        options : {
+            title: {
+                display : true,
+                text : 'Tingkat Pendidikan Mitra'
+            }
+        }
     });
 </script>
 
