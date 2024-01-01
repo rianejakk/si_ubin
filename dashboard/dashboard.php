@@ -36,15 +36,16 @@
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="../dashboard/dashboard.php?username=<?php echo urlencode($username); ?>">Beranda</a>
+                    <a href="../dashboard/dashboard.php?username=<?php echo urlencode($username); ?>">
+                        <i class="fas fa-home"></i>
+                        Beranda
+                    </a>
                 </li>
                 <li>
-                    <a href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">Data Mitra</a>
-                </li>
-            </ul>
-            <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="../php/logout.php"><?php echo htmlspecialchars($username); ?> | Log Out</a>
+                    <a href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">
+                    <i class="fas fa-users"></i>
+                    Data Mitra
+                    </a>
                 </li>
             </ul>
         </div></div>
@@ -62,9 +63,14 @@
                 </div>
             </nav>
 
-            <div class="container">
-                <canvas id="theChart" class="sizeChart"></canvas>
-            </div>
+            <div class="chartCard">
+                    <div class="chartBox">
+                        <canvas id="mitraLaki&Perempuan" class="chart-mitra-gender"></canvas>
+                    </div>
+                    <div class="chartBox">
+                        <canvas id="pendidikanMitra" class="chart-mitra-pendidikan"></canvas>
+                    </div>
+                </div>
             </div>
     </div>
 
