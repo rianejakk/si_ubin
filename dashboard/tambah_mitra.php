@@ -1,29 +1,157 @@
 <?php 
     require ('../php/dashboard.php'); 
-    
-    // Inisiasi variabel
-    $nama = "";
-    $nip = "";
-    $jabatan = "";
 
+    // Inisiasi variabel input
+    $nama = "";
+    $nik = "";
+    $mitra_username = "";
+    $email = "";
+    $npwp = "";
+    $alamat = "";
+    $tempat_lahir = "";
+    $tgl_lahir = "";
+    $jk = "";
+    $agama = "";
+    $status_kawin = "";
+    $pendidikan = "";
+    $no_hp = "";
+    $pekerjaan = "";
+    // $nama_bank = "";
+    // $no_rekening = "";
+    // $pemilik_rekening = "";
+    // $merk_hp = "";
+    // $tipe_hp = "";
+    // $catatan = "";
+
+    // Inisiasi variabel checklist
+
+    //Variabel Checklist
     $pesanError = "";
     $pesanBerhasil = "";
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $nama = $_POST["Nama"];
-        $nip = $_POST["NIP"];
-        $jabatan = $_POST["Jabatan"];
+        
+        //Variabel Input
+        $nik = $_POST["nik"];
+        $nama = $_POST["nama"];
+        $mitra_username = $_POST["username"];
+        $email = $_POST["email"];
+        $npwp = $_POST["npwp"];
+        $alamat = $_POST["alamat"];
+        $tempat_lahir = $_POST["tempat_lahir"];
+        $tgl_lahir = $_POST["tgl_lahir"];
+        $jk = $_POST["JenisKelamin"];
+        $agama = $_POST["agama"];
+        $status_kawin = $_POST["status_kawin"];
+        $pendidikan = $_POST["pendidikan"];
+        $no_hp = $_POST["handphone"];
+        $pekerjaan = $_POST["pekerjaan"];
+        // $sensus_penduduk = isset($_POST["sensus_penduduk"]) ? 1 : 0;
+        // echo $sensus_penduduk;
+        // $sensus_pertanian = isset($_POST["sensus_pertanian"]) ? 1 : 0;
+        // echo $sensus_pertanian;
+        // $sensus_ekonomi = isset($_POST["sensus_ekonomi"]) ? 1 : 0;
+        // echo $sensus_ekonomi;
+        // $survei_sen = isset($_POST["survei_sen"]) ? 1 : 0;
+        // echo $survei_sen;
+        // $survei_akn = isset($_POST["survei_akn"]) ? 1 : 0;
+        // echo $survei_akn;
+        // $survei_biaya_hidup = isset($_POST["survei_biaya_hidup"]) ? 1 : 0;
+        // echo $survei_biaya_hidup;
+        // $capi = isset($_POST["capi"]) ? 1 : 0;
+        // echo $capi;
+        // $nama_bank = $_POST["Nama Bank"];
+        // $no_rekening = $_POST["Nomor Rekening"];
+        // $pemilik_rekening = $_POST["Nama Pemilik Rekening"];
+        // $hp_android = isset($_POST["hp_android"]) ? 1 : 0;
+        // echo $hp_android;
+        // $merk_hp = $_POST["Merk HP"];
+        // $tipe_hp = $_POST["Tipe HP"];
+        // $kendaraan_bermotor = isset($_POST["kendaraan_bermotor"]) ? 1 : 0;
+        // echo $kendaraan_bermotor;
+        // $bisa_motor = isset($_POST["bisa_motor"]) ? 1 : 0;
+        // echo $bisa_motor;
+        // $laptop = isset($_POST["laptop"]) ? 1 : 0;
+        // echo $laptop;
+        // $op_pc = isset($_POST["op_pc"]) ? 1 : 0;
+        // echo $op_pc;
+        // $catatan = $_POST["Catatan"];
+        // $hubungan_kerja_lain = isset($_POST["hubungan_kerja_lain"]) ? 1 : 0;
+        // echo $hubungan_kerja_lain;
+
+        // Variabel file
+        // Foto KTP
+        // $ktp = $_FILES['foto_ktp'];
+        // $ktp_name = $ktp['name'];
+        // $ktp_tmp = $ktp['tmp_name'];
+        
+        // $ktp_data = file_get_contents($ktp);
+        
+        // // Foto Ijazah
+        // $ijazah = $_FILES['ijazah'];
+        // $ijazah_name = $ijazah['name'];
+        // $ijazah_tmp = $ijazah['tmp_name'];
+        
+        // $ijazah_data = file_get_contents($ijazah);
 
         do {
             // Isi semua kolom
-            if (empty($nama) || empty($nip) || empty($jabatan)) {
-                $pesanError = "Semua kolom harus diisi";
+            if (   empty($nama)
+                || empty($nik)
+                || empty($mitra_username)
+                || empty($email)
+                || empty($npwp)
+                || empty($alamat)
+                || empty($tempat_lahir)
+                || empty($tgl_lahir)
+                || empty($jk)
+                || empty($agama)
+                || empty($status_kawin)
+                || empty($pendidikan)
+                || empty($no_hp)
+                || empty($pekerjaan)
+                // || empty($nama_bank)
+                // || empty($no_rekening)
+                // || empty($pemilik_rekening)
+                ) {
+                $pesanError = "Ada kolom yang harus diisi";
                 break;
             }
-
+            
             // Masukkan ke dalam database
-            $sql = "INSERT INTO data_mitra (Nama, NIK, TempatLahir) 
-                    VALUES ('$nama', '$nip', '$jabatan')";
+            $sql = "INSERT INTO data_mitra (
+                    NIK,
+                    Nama,
+                    username,
+                    Email,
+                    NPWP,
+                    Alamat,
+                    TempatLahir,
+                    TanggalLahir,
+                    JenisKelamin,
+                    Agama,
+                    StatusPerkawinan,
+                    PendidikanTerakhir,
+                    NoHandphone,
+                    Pekerjaan
+                    )
+
+                    VALUES (
+                        '$nik',
+                        '$nama',
+                        '$mitra_username',
+                        '$email',
+                        '$npwp',
+                        '$alamat',
+                        '$tempat_lahir',
+                        '$tgl_lahir',
+                        '$jk',
+                        '$agama',
+                        '$status_kawin',
+                        '$pendidikan',
+                        '$no_hp',
+                        '$pekerjaan'
+                    )";
 
             $result = $conn->query($sql);
             
@@ -31,11 +159,11 @@
                 $pesanError = "Data tidak valid";
                 break;
             }
-
+            
             // Kosongkan kolom setelah berhasil
-            $nama = "";
-            $nip = "";
-            $jabatan = "";
+            // $nama = "";
+            // $nip = "";
+            // $jabatan = "";
             
             $pesanBerhasil = "Data berhasil ditambahkan";
 
@@ -76,10 +204,10 @@
             </div>
 
             <ul class="list-unstyled components">
-                <li class="active">
+                <li>
                     <a href="../dashboard/dashboard.php?username=<?php echo urlencode($username); ?>">Beranda</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">Data Mitra</a>
                 </li>
             </ul>
@@ -103,37 +231,329 @@
                 </div>
             </nav>
             <!-- Konten Disini -->
-                <div class="container my-5">
-                    <h4>Tambah Mitra</h4>
-                    <?php
-                    if (!empty($pesanError)) {
-                        echo "
-                        <div class='alert alert-warning alert-dismissible fade show' role='alert'>
-                            <p>$pesanError</p>
-                            <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                                <span aria-hidden='true'>&times;</span>
-                            </button>
-                        </div>";
-                    }
-                    ?>
-                    <form method="post">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Nama</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="Nama" value="<?php echo $nama; ?>">
+            <h4>Tambah Mitra</h4>
+                <div class="container mt-5">
+                <ul class="nav nav-tabs" id="myTabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="tab1-tab" data-bs-toggle="tab" href="#tab1">Profil</a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" id="tab2-tab" data-bs-toggle="tab" href="#tab2">Pengalaman</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab3-tab" data-bs-toggle="tab" href="#tab3">File Administrasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab4-tab" data-bs-toggle="tab" href="#tab4">Rekening</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab5-tab" data-bs-toggle="tab" href="#tab5">Lainnya</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab6-tab" data-bs-toggle="tab" href="#tab6">Catatan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tab7-tab" data-bs-toggle="tab" href="#tab7">Hubungan Eksternal</a>
+                    </li> -->
+                </ul>
+
+                <div class="tab-content mt-2">
+
+                    <!-- Konten Tab 1 -->
+                    <div class="tab-pane fade show active" id="tab1">
+                        <form method="post">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label><h6>Nama Lengkap</h6></label>
+                                    <input type="text" class="form-control" name="nama" id="nama" value="<?php echo $nama; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label><h6>NIK KTP/Surat Keterangan</h6></label>
+                                    <input type="text" class="form-control" name="nik" id="nik" value="<?php echo $nik; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label><h6>Username</h6></label>
+                                    <input type="text" class="form-control" name="username" id="username" value="<?php echo $mitra_username; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label><h6>Email</h6></label>
+                                    <input type="text" class="form-control" name="email" id="email" value="<?php echo $email; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label><h6>NPWP</h6></label>
+                                    <input type="text" class="form-control" name="npwp" id="npwp" value="<?php echo $npwp; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label><h6>Alamat</h6></label>
+                                    <input type="text" class="form-control" name="alamat" id="alamat" value="<?php echo $alamat; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label><h6>Tempat Lahir</h6></label>
+                                    <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" value="<?php echo $tempat_lahir; ?>">
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label><h6>Tanggal Lahir</h6></label>
+                                    <input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" value="<?php echo $tgl_lahir; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label><h6>Jenis Kelamin</h6></label> -->
+                                    <!-- <input type="text" class="form-control" name="jk" id="jk" value=""> -->
+                                    <label for="Nama">Jenis Kelamin*</label>
+						            <select name="JenisKelamin" class="custom-select" >
+                                        <option value="<?php echo $jk; ?>">- Pilih Jenis Kelamin -</option>
+                                        <option value="Laki-Laki">Laki-Laki</option>
+                                        <option value="Perempuan">Perempuan</option>
+						            </select>
+                                </div>
+                                <div class="form-group">
+                                    <label><h6>Agama</h6></label>
+                                    <!-- <input type="text" class="form-control" name="agama" id="agama" value=""> -->
+                                    <select name="agama" class="custom-select" >
+                                        <option value="<?php echo $agama; ?>">- Pilih Agama -</option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Kristen">Kristen</option>
+                                        <option value="Katolik">Katolik</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Budha">Budha</option>
+                                        <option value="Konghucu">Konghucu</option>
+						            </select>
+                                </div>
+                                <div class="form-group">
+                                    <label><h6>Status Perkawinan</h6></label>
+                                    <!-- <input type="text" class="form-control" name="status_kawin" id="status_kawin" value="">-->
+                                    <select name="status_kawin" class="custom-select" >
+                                        <option value="<?php echo $status_kawin; ?>">- Pilih Status Perkawinan -</option>
+                                        <option value="Belum Menikah">Belum Menikah</option>
+                                        <option value="Sudah Menikah">Sudah Menikah</option>
+						            </select>
+                                </div>
+                                <div class="form-group">
+                                    <label><h6>Pendidikan Terakhir</h6></label>
+                                    <!-- <input type="text" class="form-control" name="pendidikan" id="pendidikan" value=""> -->
+                                    <select name="pendidikan" class="custom-select" >
+                                        <option value="<?php echo $pendidikan; ?>">- Pilih Pendidikan Terakhir -</option>
+                                        <option value="SMA/SMK/MA">SMA/SMK/MA</option>
+                                        <option value="D3">D3</option>
+                                        <option value="D4">D3/S1</option>
+                                        <option value="S2">S2</option>
+						            </select>
+                                </div>
+                                <div class="form-group">
+                                    <label><h6>Handphone</h6></label>
+                                    <input type="text" class="form-control" name="handphone" id="handphone" value="<?php echo $no_hp; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label><h6>Pekerjaan</h6></label>
+                                    <input type="text" class="form-control" name="pekerjaan" id="pekerjaan" value="<?php echo $pekerjaan; ?>">
+                                </div>
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">NIP</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="NIP" value="<?php echo $nip; ?>">
+                    </div>
+
+                    <!-- Konten Tab 2 -->
+                    <!-- <div class="tab-pane fade" id="tab2">
+                    <div class="container mt-5"> -->
+                        <!-- <form class="form" action="##" method="post" id="registrationForm"> -->
+                            <!-- <h6>Pernah menjadi petugas Sensus/Survei Berikut :</h6>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="sensus_penduduk">
+                                    <label class="form-check-label" for="sensus_penduduk">
+                                    Sensus Penduduk
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="sensus_pertanian">
+                                    <label class="form-check-label" for="sensus_pertanian">
+                                    Sensus Pertanian
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="sensus_ekonomi">
+                                    <label class="form-check-label" for="sensus_ekonomi">
+                                    Sensus Ekonomi
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="survei_sen">
+                                    <label class="form-check-label" for="survei_sen">
+                                    Survei Sosial Ekonomi Nasional
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="survei_akn">
+                                    <label class="form-check-label" for="survei_akn">
+                                    Survei Angkatan Kerja Nasional
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="survei_biaya_hidup">
+                                    <label class="form-check-label" for="survei_biaya_hidup">
+                                    Survei Biaya Hidup
+                                    </label>
+                                </div>
+                            </div>
+                            <h6>Penggunaan Computer-Assisted Personal Interview</h6>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="capi">
+                                    <label class="form-check-label" for="capi">
+                                    Pernah Menggunakan Computer-Assisted Personal Interview
+                                    </label>
+                                </div>
+                            </div> -->
+                        <!-- </form> -->
+                    <!-- </div>
+                    </div> -->
+
+                    <!-- Konten Tab 3 -->
+                    <!-- <div class="tab-pane fade" id="tab3">
+                        <form action="upload.php" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label class="form-check-label">
+                                    Foto KTP
+                                </label>
+                                <br>
+                                <input type="file" name="foto_ktp" id="foto_ktp"/>
+                                <input type="submit" name="submit" value="Upload"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-check-label">
+                                    Ijazah
+                                </label>
+                                <br>
+                                <input type="file" name="ijazah" id="ijazah"/>
+                                <input type="submit" name="submit" value="Upload"/>
+                            </div>
+                        </form> -->
+                    <!-- </div> -->
+
+                    <!-- Konten Tab 4 -->
+                    <!-- <div class="tab-pane fade" id="tab4"> -->
+                        <!-- <form class="form" action="##" method="post" id="registrationForm"> -->
+                            <!-- <div class="col-md-5">
+                                <div class="form-group">
+                                    <label><h6>Nama Bank</h6></label>
+                                    <input type="text" class="form-control" name="nama_bank" id="nama_bank" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label><h6>Nomor Rekening</h6></label>
+                                    <input type="text" class="form-control" name="no_rekening" id="no_rekening" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label><h6>Nama Pemilik Rekening</h6></label>
+                                    <input type="text" class="form-control" name="pemilik_rekening" id="pemilik_rekening" value="">
+                                </div>
+                            </div> -->
+                        <!-- </form> -->
+                    <!-- </div> -->
+
+                    <!-- Konten Tab 5 -->
+                    <!-- <div class="tab-pane fade" id="tab5">
+                    <div class="container mt-5"> -->
+                        <!-- <form class="form" action="##" method="post" id="registrationForm"> -->
+                        <!-- <div class="row"> -->
+                            <!-- Kolom 1 -->
+                        <!-- <div class="col-md-5">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="hp_android">
+                                    <label class="form-check-label" for="hp_android">
+                                    Kepemilikan HP Android
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                    <label><h6>Merk HP</h6></label>
+                                    <input type="text" class="form-control" name="merk_hp" id="merk_hp" value="">
+                            </div>
+                            <div class="form-group">
+                                    <label><h6>Tipe HP</h6></label>
+                                    <input type="text" class="form-control" name="tipe_hp" id="tipe_hp" value="">
+                            </div>
+                        </div> -->
+                        <!-- Kolom 2 -->
+                            <!-- <div class="col-md-5">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="kendaraan_bermotor">
+                                    <label class="form-check-label" for="kendaraan_bermotor">
+                                    Kepemilikan Kendaraan Bermotor
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="bisa_motor">
+                                    <label class="form-check-label" for="bisa_motor">
+                                    Bisa Mengendarai Motor
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="laptop">
+                                    <label class="form-check-label" for="laptop">
+                                    Mempunyai Laptop
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="op_pc">
+                                    <label class="form-check-label" for="op_pc">
+                                    Bisa Mengoperasikan Komputer
+                                    </label>
+                                </div>
+                            </div>
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Jabatan</label>
-                            <div class="col-sm-6">
-                                <input type="text" class="form-control" name="Jabatan" value="<?php echo $jabatan; ?>">
+                        </div>
+                    </div> -->
+
+                    <!-- Konten Tab 6 -->
+                    <!-- <div class="tab-pane fade" id="tab6">
+                        <div class="form-group">
+                            <label><h5>Catatan</h5></label>
+                            <input type="text" class="form-control" name="catatan" id="catatan" value="">
+                        </div>
+                    </div> -->
+                    
+                    <!-- Konten Tab 7 -->
+                    <!-- <div class="tab-pane fade" id="tab7">
+                    <div class="alert alert-dark" role="alert">
+                        Keterangan<br><hr>
+                        1. Secara sah terikat dengan K/L/D/I lain yang dinyatakan dalam bentuk legal dokumen (kontrak, SK, dsb); dan<br>
+                        2. Menerima honor bulanan/tetap baik dari APBN maupun APBD dari K/L/D/I tersebut.
+                    </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="hubungan_kerja_lain">
+                                <label class="form-check-label" for="hubungan_kerja_lain">
+                                    Mempunyai Hubungan Kerja dengan K/L Lain
+                                </label>
                             </div>
+                        </div>
+                    </div> -->
+                        <div class="col-xs-12">
+                            <br>
+                            <!-- <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                            <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i>Reset</button> -->
+                            <button type="submit" class="btn btn-primary" name="submit">Tambah</button>
+                            <a class="btn btn-danger" href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">Batal</a>
                         </div>
                         <?php 
                             if (!empty($pesanBerhasil)) {
@@ -146,16 +566,14 @@
                                 </div>";
                             }
                         ?>
-                        <div class="row mb-3">
-                            <div class="offset-sm-3 col-sm-2 d-grid">
-                                <button type="submit" class="btn btn-primary" name="submit">Tambah</button>
-                            </div>
-                            <div class="col-sm-3 d-grid">
-                                <a class="btn btn-danger" href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">Batal</a>
-                        </div>
-                        </div>
+                    </div>
                     </form>
                 </div>
+            </div>
+
+            <!-- Bootstrap JS (optional, but required for certain features like dropdowns) -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                        
             </div>
     </div>
 
@@ -181,4 +599,5 @@
             });
         });
     </script>
-</body></html>
+</body>
+</html>

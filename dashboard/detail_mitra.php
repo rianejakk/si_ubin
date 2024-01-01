@@ -159,10 +159,10 @@
             </div>
 
             <ul class="list-unstyled components">
-                <li class="active">
+                <li>
                     <a href="../dashboard/dashboard.php?username=<?php echo urlencode($username); ?>">Beranda</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">Data Mitra</a>
                 </li>
             </ul>

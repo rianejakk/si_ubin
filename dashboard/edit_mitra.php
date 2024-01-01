@@ -88,10 +88,10 @@
             </div>
 
             <ul class="list-unstyled components">
-                <li class="active">
+                <li>
                     <a href="../dashboard/dashboard.php?username=<?php echo urlencode($username); ?>">Beranda</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="../dashboard/data_mitra.php?username=<?php echo urlencode($username); ?>">Data Mitra</a>
                 </li>
             </ul>
@@ -182,12 +182,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Jenis Kelamin</h6></label>
-                                    <!-- <input type="text" class="form-control" name="jk" id="jk" value=""> -->
-                                    <select name="jk" class="custom-select">
+                                    <input type="text" class="form-control" name="jk" id="jk" value="<?php echo $jk; ?>">
+                                    <!-- <select name="jk" class="custom-select">
                                     <option value="">- Pilih jenis kelamin -</option>
                                     <option value="Perempuan" <?php if($row['JenisKelamin'] == 'Perempuan') {echo"selected";} ?>>Perempuan</option>
                                     <option value="Laki-laki" <?php if($row['JenisKelamin'] == 'Laki-Laki') {echo"selected";} ?>>Laki-Laki</option>
-						            </select>
+						            </select> -->
                                 </div>
                                 <div class="form-group">
                                     <label><h6>Agama</h6></label>
