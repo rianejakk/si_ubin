@@ -62,9 +62,14 @@
                 </div>
             </nav>
 
-            <div class="container">
-                <canvas id="theChart" class="sizeChart"></canvas>
-            </div>
+            <div class="chartCard">
+                    <div class="chartBox">
+                        <canvas id="mitraLaki&Perempuan" class="chart-mitra-gender"></canvas>
+                    </div>
+                    <div class="chartBox">
+                        <canvas id="pendidikanMitra" class="chart-mitra-pendidikan"></canvas>
+                    </div>
+                </div>
             </div>
     </div>
 
@@ -92,7 +97,7 @@
     </script>
 
 <script>
-    let ctx = document.getElementById("theChart").getContext("2d");
+    let ctx = document.getElementById("mitraLaki&Perempuan").getContext("2d");
     let myChart = new Chart(ctx, {
         type: "pie",
         data: {
@@ -110,7 +115,43 @@
                 hoverOffset: 4
                 }]
         },
-        
+        options : {
+            title: {
+                display : true,
+                text : 'Perbandingan Mitra Laki-laki & Perempuan'
+            }
+        }
+    });
+</script>
+<script>
+    let cmp = document.getElementById("pendidikanMitra").getContext("2d");
+    let chartPendidikan = new Chart(cmp, {
+        type: "pie",
+        data: {
+            labels: [
+                "SMA/SMK/MA",
+                "D3",
+                "D4/S1",
+                "S2",
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100, 125],
+                backgroundColor: [
+                'rgb(255, 205, 86)',
+                'rgb(54, 162, 235)',
+                'rgb(54, 162, 235)',
+                'rgb(54, 162, 235)',
+                ],
+                hoverOffset: 4
+                }]
+        },
+        options : {
+            title: {
+                display : true,
+                text : 'Tingkat Pendidikan Mitra'
+            }
+        }
     });
 </script>
 
